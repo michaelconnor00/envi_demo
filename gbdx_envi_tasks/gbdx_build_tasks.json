@@ -1,0 +1,31 @@
+{
+  "inputPortDescriptors" : [
+    {
+      "required" : true,
+      "description" : "Fake port as schema requires one input",
+      "name" : "task_name",
+      "type" : "string"
+    }
+  ],
+  "outputPortDescriptors" : [
+    {
+      "required" : true,
+      "description" : "Output dir with the json files",
+      "name" : "envi_task_definitions",
+      "type" : "directory"
+    }
+  ],
+  "containerDescriptors" : [
+    {
+      "properties" : {
+        "image" : "tdgp/envi_task_builder:latest"
+      },
+      "type" : "DOCKER"
+    }
+  ],
+  "description" : "Build GBDX Task Definitions",
+  "name" : "GBDX_BuildENVITasks",
+  "properties" : {
+    "timeout" : 7200
+  }
+}

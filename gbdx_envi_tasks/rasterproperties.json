@@ -1,0 +1,79 @@
+{
+  "containerDescriptors": [
+    {
+      "type": "DOCKER", 
+      "properties": {
+        "image": "tdgp/envi_task_runner:latest"
+      }
+    }
+  ], 
+  "description": "This task retrieves the properties of an ENVIRaster. Although you can issue a PRINT command on an ENVIRaster to retrieve its properties, this task was designed for use within an image-processing script where you can create variables for the different properties.", 
+  "inputPortDescriptors": [
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "GBDX Requirement. Name of the task to be executed", 
+      "name": "task_name"
+    }, 
+    {
+      "required": false, 
+      "type": "string", 
+      "description": "Comma seperated list of permitted file type extensions. Use this to filter input files", 
+      "name": "file_types"
+    }, 
+    {
+      "required": true, 
+      "type": "directory", 
+      "description": "Specify a raster from which to retrieve properties.", 
+      "name": "input_raster"
+    }
+  ], 
+  "outputPortDescriptors": [
+    {
+      "required": false, 
+      "type": "directory", 
+      "description": "Output location for task meta data such as execution log and output JSON", 
+      "name": "task_meta_data"
+    }, 
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "The number of columns in the raster.", 
+      "name": "ncolumns"
+    }, 
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "The spatial reference of the raster; more specifically, the ENVIStandardRasterSpatialRef, ENVIPseudoRasterSpatialRef, or ENVIRPCRasterSpatialRef object associated with the raster.", 
+      "name": "spatial_reference"
+    }, 
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "A string specifying the raster data type.", 
+      "name": "data_type_name"
+    }, 
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "The number of rows in the raster.", 
+      "name": "nrows"
+    }, 
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "The number of bands in the raster.", 
+      "name": "nbands"
+    }, 
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "An integer specifying the raster data type.", 
+      "name": "data_type_code"
+    }
+  ], 
+  "properties": {
+    "timeout": 7200
+  }, 
+  "name": "ENVI_RasterProperties"
+}

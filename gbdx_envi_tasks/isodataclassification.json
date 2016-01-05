@@ -1,0 +1,73 @@
+{
+  "containerDescriptors": [
+    {
+      "type": "DOCKER", 
+      "properties": {
+        "image": "tdgp/envi_task_runner:latest"
+      }
+    }
+  ], 
+  "description": "This task clusters pixels in a dataset based on statistics only, without requiring you to define training classes.", 
+  "inputPortDescriptors": [
+    {
+      "required": true, 
+      "type": "string", 
+      "description": "GBDX Requirement. Name of the task to be executed", 
+      "name": "task_name"
+    }, 
+    {
+      "required": false, 
+      "type": "string", 
+      "description": "Comma seperated list of permitted file type extensions. Use this to filter input files", 
+      "name": "file_types"
+    }, 
+    {
+      "required": true, 
+      "type": "directory", 
+      "description": "Specify a raster on which to perform unsupervised classification.", 
+      "name": "input_raster"
+    }, 
+    {
+      "required": false, 
+      "type": "string", 
+      "description": "The change threshold percentage that determines when to complete the classification.  When the percentage of pixels that change classes during an iteration is less than the threshold value, the classification completes.", 
+      "name": "change_threshold_percent"
+    }, 
+    {
+      "required": false, 
+      "type": "string", 
+      "description": "The requested number of classes to generate.", 
+      "name": "number_of_classes"
+    }, 
+    {
+      "required": false, 
+      "type": "string", 
+      "description": "The maximum iterations to perform.  If the change threshold percent is not met before the maximum number of iterations is reached, the classification completes.", 
+      "name": "iterations"
+    }, 
+    {
+      "required": false, 
+      "type": "string", 
+      "description": "Specify a string with the fully-qualified path and filename for OUTPUT_RASTER.", 
+      "name": "output_raster_uri_filename"
+    }
+  ], 
+  "outputPortDescriptors": [
+    {
+      "required": false, 
+      "type": "directory", 
+      "description": "Output location for task meta data such as execution log and output JSON", 
+      "name": "task_meta_data"
+    }, 
+    {
+      "required": true, 
+      "type": "directory", 
+      "description": "Specify a string with the fully-qualified path and filename for OUTPUT_RASTER.", 
+      "name": "output_raster_uri"
+    }
+  ], 
+  "properties": {
+    "timeout": 7200
+  }, 
+  "name": "ENVI_ISODATAClassification"
+}

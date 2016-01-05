@@ -1,0 +1,36 @@
+{
+  "inputPortDescriptors" : [
+    {
+      "required" : true,
+      "description" : "The location of the input data files",
+      "name" : "input_location",
+      "type" : "directory"
+  },{
+      "required" : true,
+      "description" : "The IDL script to execute",
+      "name" : "idl_program_data",
+      "type" : "directory"
+  }
+ ],
+  "outputPortDescriptors" : [
+    {
+      "required" : true,
+      "description" : "Output dir with the algorithm results",
+      "name" : "output_location",
+      "type" : "directory"
+    }
+  ],
+  "containerDescriptors" : [
+    {
+      "properties" : {
+        "image" : "tdgp/idl_task_runner:latest"
+      },
+      "type" : "DOCKER"
+    }
+  ],
+  "description" : "Task for running IDL Tasks",
+  "name" : "IDL_Task",
+  "properties" : {
+    "timeout" : 7200
+  }
+}
