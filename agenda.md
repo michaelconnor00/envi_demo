@@ -12,7 +12,7 @@
 ## GBDX Prerequisites
 
 * Knowledge in the use of GBDX tasks and workflows. See [docs.gbdtaskdeveloperguide.apiary.io](http://docs.gbdtaskdeveloperguide.apiary.io).
-* GBDX Account credentials for getting authentication tokens.
+* GBDX Account credentials for getting authentication tokens, for using GBDX endpoints
 * Access to an S3 location for both reading and writing.
 
 ## Demo Software
@@ -68,36 +68,3 @@ This Docker container is for running single ENVI tasks. The single task executes
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-hi
