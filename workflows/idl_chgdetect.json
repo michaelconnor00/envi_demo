@@ -1,0 +1,27 @@
+{
+  "tasks": [{
+    "inputs": [{
+      "name": "idl_program_data",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/data/idl_src/idl_scripts/subset_changedetect.idl"
+    }, {
+      "name": "input_location",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/data/idl_src/pg_P003_M"
+    }],
+    "name": "int_idl_task",
+    "outputs": [{
+      "name": "output_location"
+    }],
+    "taskType": "IDL_Task"
+  }, {
+    "inputs": [{
+      "source": "int_idl_task:output_location",
+      "name": "data"
+    }, {
+      "name": "destination",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/tempENVI/int-test--2016-01-05--235436/0_stagS3_output_location"
+    }],
+    "name": "0_stagS3",
+    "taskType": "StageDataToS3"
+  }],
+  "name": "envi_integration_workflow"
+}

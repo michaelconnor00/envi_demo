@@ -1,0 +1,104 @@
+{
+  "tasks": [{
+    "inputs": [{
+      "name": "task_name",
+      "value": "ImageIntersection"
+    }, {
+      "name": "input_raster1",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/data/envi_src/raster1"
+    }, {
+      "name": "input_raster2",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/data/envi_src/raster2"
+    }],
+    "name": "int_envi_imageintersection",
+    "outputs": [{
+      "name": "output_raster1_uri"
+    }, {
+      "name": "output_raster2_uri"
+    }],
+    "taskType": "ENVI_ImageIntersection"
+  }, {
+    "inputs": [{
+      "name": "task_name",
+      "value": "DimensionsResampleRaster"
+    }, {
+      "source": "int_envi_imageintersection:output_raster1_uri",
+      "name": "input_raster"
+    }, {
+      "name": "dimensions",
+      "value": "[10000, 1500]"
+    }, {
+      "name": "output_raster_uri_filename",
+      "value": "dimresample1"
+    }],
+    "name": "int_envi_dimensionsresampleraster",
+    "outputs": [{
+      "name": "output_raster_uri"
+    }, {
+      "name": "task_meta_data"
+    }],
+    "taskType": "ENVI_DimensionsResampleRaster"
+  }, {
+    "inputs": [{
+      "name": "task_name",
+      "value": "DimensionsResampleRaster"
+    }, {
+      "source": "int_envi_imageintersection:output_raster2_uri",
+      "name": "input_raster"
+    }, {
+      "name": "dimensions",
+      "value": "[10000, 1500]"
+    }, {
+      "name": "output_raster_uri_filename",
+      "value": "dimresample2"
+    }],
+    "name": "int_envi_dimensionsresampleraster_1",
+    "outputs": [{
+      "name": "output_raster_uri"
+    }, {
+      "name": "task_meta_data"
+    }],
+    "taskType": "ENVI_DimensionsResampleRaster"
+  }, {
+    "inputs": [{
+      "source": "int_envi_dimensionsresampleraster:output_raster_uri",
+      "name": "data"
+    }, {
+      "name": "destination",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/tempENVI/int-test--2016-01-05--234307/0_stagS3_output_raster_uri"
+    }],
+    "name": "0_stagS3",
+    "taskType": "StageDataToS3"
+  }, {
+    "inputs": [{
+      "source": "int_envi_dimensionsresampleraster:task_meta_data",
+      "name": "data"
+    }, {
+      "name": "destination",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/tempENVI/int-test--2016-01-05--234307/1_stagS3_task_meta_data"
+    }],
+    "name": "1_stagS3",
+    "taskType": "StageDataToS3"
+  }, {
+    "inputs": [{
+      "source": "int_envi_dimensionsresampleraster_1:output_raster_uri",
+      "name": "data"
+    }, {
+      "name": "destination",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/tempENVI/int-test--2016-01-05--234307/2_stagS3_output_raster_uri"
+    }],
+    "name": "2_stagS3",
+    "taskType": "StageDataToS3"
+  }, {
+    "inputs": [{
+      "source": "int_envi_dimensionsresampleraster_1:task_meta_data",
+      "name": "data"
+    }, {
+      "name": "destination",
+      "value": "https://test-tdgplatform-com.s3.amazonaws.com/tempENVI/int-test--2016-01-05--234307/3_stagS3_task_meta_data"
+    }],
+    "name": "3_stagS3",
+    "taskType": "StageDataToS3"
+  }],
+  "name": "envi_integration_workflow"
+}
